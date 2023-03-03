@@ -1,0 +1,6 @@
+aws_vpc_id         = "vpc-23723"
+aws_region         = "us-east-2"
+aws_route_table_id = "rtb-43543654"
+gcp_network        = "gcp-vpc"
+gcp_project_id     = "gcp-project-id"
+gcp_region         = "us-east4"
