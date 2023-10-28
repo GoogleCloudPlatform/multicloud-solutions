@@ -46,6 +46,7 @@ variable "aws_region" {
 variable "aws_transit_vpc_sub_ids" {
   description = "aws VPC ID as key and value as list of subnets that will be attached to transit gateway"
   type        = map(list(string))
+  default     = {}
 }
 # Empty List means all subnets of VPC will be attached
 # aws_transit_vpc_sub_ids = {
@@ -56,6 +57,7 @@ variable "aws_transit_vpc_sub_ids" {
 variable "aws_route_vpc_transit" {
   description = "aws VPC route table ID as key and value as list of gcp cidr ranges that will be forwarded to transit gateway"
   type        = map(list(string))
+  default     = {}
 }
 
 # aws_route_vpc_transit = {

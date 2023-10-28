@@ -83,5 +83,3 @@ The supported AWS configuration uses a total of four tunnels:
 - Two tunnels from the other AWS virtual private gateway to the other interface of the HA VPN gateway.
 
 ![Topology diagram](https://storage.googleapis.com/gcp-community/tutorials/using-ha-vpn-with-aws/gcp-aws-ha-vpn-topology.png)
-
-
