@@ -14,10 +14,6 @@
 
 # Routing specs
 
-data "google_compute_network" "gcp_vpn_network" {
-  name = var.gcp_network
-}
-
 resource "google_compute_router" "gcp_az_vpn_router" {
   name    = "gcp-az-vpn-router"
   network = var.gcp_network
@@ -27,10 +23,12 @@ resource "google_compute_router" "gcp_az_vpn_router" {
     advertise_mode    = "CUSTOM"
     advertised_groups = ["ALL_SUBNETS"]
 
-    # advertised_ip_ranges {
-    #   range = "35.199.192.0/19"
-    #   description = "Cloud DNS Managed Private Zone Forwarding"
-    # }
+    dynamic "advertised_ip_ranges" {
+      for_each = toset(var.gcp_custom_advertised_ip_ranges)
+      content {
+        range = advertised_ip_ranges.key
+      }
+    }
   }
 }
 

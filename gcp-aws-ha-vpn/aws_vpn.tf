@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-data "aws_vpc" "aws_vpn_network" {
-  id = var.aws_vpc_id
-}
-
 resource "aws_vpn_gateway" "vpn_gateway" {
   vpc_id = var.aws_vpc_id
 }

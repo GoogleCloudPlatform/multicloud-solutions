@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-# data "aws_vpc" "aws_vpn_network" {
-#   id = var.aws_vpc_id
-# }
-
 locals {
   route_vpc_transit = flatten([
     for route_id, cidr_blocks in var.aws_route_vpc_transit : [
@@ -30,7 +26,7 @@ locals {
 }
 
 data "aws_subnets" "aws_sub" {
-  for_each = toset([for vpc, sub in var.aws_vpc_sub_ids : vpc if length(sub) == 0])
+  for_each = toset([for vpc, sub in var.aws_transit_vpc_sub_ids : vpc if length(sub) == 0])
   filter {
     name   = "vpc-id"
     values = [each.key]
@@ -71,7 +67,7 @@ resource "aws_vpn_connection" "cx_2" {
 }
 
 resource "aws_ec2_transit_gateway_vpc_attachment" "transit_vpc_attach" {
-  for_each           = var.aws_vpc_sub_ids
+  for_each           = var.aws_transit_vpc_sub_ids
   subnet_ids         = length(each.value) == 0 ? data.aws_subnets.aws_sub[each.key].ids : each.value
   transit_gateway_id = aws_ec2_transit_gateway.vpn_transit_gateway.id
   vpc_id             = each.key

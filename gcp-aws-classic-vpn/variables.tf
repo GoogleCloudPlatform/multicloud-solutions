@@ -49,3 +49,22 @@ variable "aws_route_table_id" {
   type        = string
   default     = ""
 }
+
+variable "aws_bgp_asn" {
+  description = "aws bgp asn"
+  type        = number
+  default     = 65000
+}
+
+variable "aws_routes_in_gcp" {
+  description = "aws static routes in GCP"
+  type        = list(string)
+  default     = []
+}
+
+
+variable "gcp_routes_in_aws" {
+  description = "GCP static routes in aws"
+  type        = list(string)
+  default     = []
+}

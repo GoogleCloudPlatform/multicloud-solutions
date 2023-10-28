@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# AWS Vars
+# Azure Vars
 
 variable "azure_resource_group_name" {
   description = "azure resource group name"
@@ -62,8 +62,13 @@ variable "gcp_bgp_asn" {
 }
 
 variable "gcp_vpn_shared_secret" {
-  description = "gcp region."
-  default     = "gcpazshared123"
+  description = "gcp VPN shared secret"
+}
+
+variable "gcp_custom_advertised_ip_ranges" {
+  description = "GCP custom ip ranges that will be advertised at aws side, use for peered network, dns forwarding, PGA"
+  type        = list(string)
+  default     = []
 }
 
 # BGP APIPA IP

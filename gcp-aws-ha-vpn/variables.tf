@@ -36,6 +36,12 @@ variable "gcp_region" {
   type        = string
 }
 
+variable "gcp_custom_advertised_ip_ranges" {
+  description = "GCP custom ip ranges that will be advertised at aws side, use for peered network, dns forwarding, PGA"
+  type        = list(string)
+  default     = []
+}
+
 # AWS Vars
 
 variable "aws_vpc_id" {

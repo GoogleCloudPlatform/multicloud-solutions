@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-data "aws_vpc" "aws_vpn_network" {
-  id = var.aws_vpc_id
-}
-
 resource "aws_vpn_gateway" "vpn_gateway" {
   vpc_id = var.aws_vpc_id
 }
 
 resource "aws_customer_gateway" "customer_gateway_1" {
-  bgp_asn    = 65000
+  bgp_asn    = var.aws_bgp_asn
   ip_address = google_compute_address.vpn_static_ip.address
   type       = "ipsec.1"
 }
@@ -38,7 +34,8 @@ resource "aws_vpn_connection" "cx_1" {
 }
 
 resource "aws_vpn_connection_route" "gcp_route" {
-  destination_cidr_block = "10.1.0.0/16"
+  for_each               = toset(var.gcp_routes_in_aws)
+  destination_cidr_block = each.key
   vpn_connection_id      = aws_vpn_connection.cx_1.id
 }
 
@@ -47,5 +44,3 @@ resource "aws_vpn_gateway_route_propagation" "vpn_propagation" {
   vpn_gateway_id = aws_vpn_gateway.vpn_gateway.id
   route_table_id = var.aws_route_table_id
 }
-
-

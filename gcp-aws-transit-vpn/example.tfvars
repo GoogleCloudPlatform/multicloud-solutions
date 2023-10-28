@@ -2,7 +2,7 @@ gcp_project_id = "gcp-project-id"
 gcp_network    = "gcp-vpc"
 gcp_region     = "us-west1"
 aws_region     = "us-west-2"
-aws_vpc_sub_ids = {
+aws_transit_vpc_sub_ids = {
   "vpc-3s3w" : [],
   "vpc-3sd3" : ["subnet-2s2"]
 }

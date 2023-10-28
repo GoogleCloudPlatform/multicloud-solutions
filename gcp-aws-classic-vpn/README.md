@@ -1,7 +1,7 @@
 # Terraform to build HA VPN connections between Google Cloud and AWS
 
 **Disclaimer**: This interoperability terraform setup is intended to be minimal in
-nature with less user input and auto public ip and shared key creation. Customers should verify this by testing it.
+nature with less user input and auto public ip and shared key creation. Users should verify and modify configuration accordingly.
 
 ## Before you begin
 1.  Go through steps to create [GCP to AWS HA VPN setup](https://cloud.google.com/architecture/build-ha-vpn-connections-google-cloud-aws) (aws and gcp cli commands)

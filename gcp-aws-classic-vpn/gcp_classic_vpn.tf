@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "google_compute_vpn_tunnel" "tunnel1" {
-  name          = "aws-tunnel-1"
+resource "google_compute_vpn_tunnel" "gcp_tunnel" {
+  name          = "gcp-aws-tunnel"
   peer_ip       = aws_vpn_connection.cx_1.tunnel1_address
   shared_secret = aws_vpn_connection.cx_1.tunnel1_preshared_key
   ike_version   = 2
@@ -31,7 +31,7 @@ resource "google_compute_vpn_tunnel" "tunnel1" {
 }
 
 resource "google_compute_vpn_gateway" "target_gateway" {
-  name    = "vpn-1"
+  name    = "vpn-gateway"
   network = var.gcp_network
 }
 
@@ -62,11 +62,11 @@ resource "google_compute_forwarding_rule" "fr_udp4500" {
   target      = google_compute_vpn_gateway.target_gateway.id
 }
 
-resource "google_compute_route" "vpn_route1" {
-  name       = "vpn-route1"
-  network    = var.gcp_network
-  dest_range = "10.2.0.0/16"
-  priority   = 1000
-
-  next_hop_vpn_tunnel = google_compute_vpn_tunnel.tunnel1.id
+resource "google_compute_route" "vpn_dest_route" {
+  for_each            = toset(var.aws_routes_in_gcp)
+  name                = "aws-dest-vpn-route-${replace(each.key, "/[./]/", "-")}"
+  network             = var.gcp_network
+  dest_range          = each.key
+  priority            = 1000
+  next_hop_vpn_tunnel = google_compute_vpn_tunnel.gcp_tunnel.id
 }
