@@ -4,10 +4,10 @@ Common multicloud, migration and vpn solutions and example developed by Google C
 ## Solutions/Examples
 The folder contains example solutions focusing on VPN, multicloud and migration stragegies enriching migration from other Cloud providers to Google Cloud products. Use these solutions as a reference for your own or extend them to fit your particular use case.
 
-* [GCP AWS Classic VPN Connection terraform ](tools/gcp-aws-classic-vpn) - Terraform script to setup Classic VPN between GCP and AWS.
-* [GCP AWS HA VPN Connection terraform ](tools/gcp-aws-ha-vpn) - Terraform script to setup HA VPN between GCP and AWS.
-* [GCP AWS Transit VPN Connection terraform ](tools/gcp-aws-transit-vpn) - Terraform script to setup VPN between GCP and Transit AWS setup.
-* [GCP Azure VPN Connection terraform ](tools/gcp-azure-vpn) - Terraform script to setup  VPN between GCP and Azure.
+* [GCP AWS Classic VPN Connection terraform ](gcp-aws-classic-vpn/) - Terraform script to setup Classic VPN between GCP and AWS.
+* [GCP AWS HA VPN Connection terraform ](gcp-aws-ha-vpn/) - Terraform script to setup HA VPN between GCP and AWS.
+* [GCP AWS Transit VPN Connection terraform ](gcp-aws-transit-vpn/) - Terraform script to setup VPN between GCP and Transit AWS setup.
+* [GCP Azure VPN Connection terraform ](gcp-azure-vpn/) - Terraform script to setup  VPN between GCP and Azure.
 
 ## Contributing
 See the contributing [instructions](/CONTRIBUTING.md) to get started contributing.
